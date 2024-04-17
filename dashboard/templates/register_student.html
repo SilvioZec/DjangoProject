@@ -1,0 +1,23 @@
+{% extends 'socialaccount/base_entrance.html' %}
+{% block extra_head %}
+    <style>
+        .form-container {
+            margin: 0 auto;
+            max-width: 400px; /* Defina a largura máxima desejada para o formulário */
+            padding: 20px;
+            border: 1px solid #ccc; /* Adicione borda se desejar */
+            border-radius: 5px; /* Adicione borda arredondada se desejar */
+        }
+    </style>
+{% endblock %}
+{% block extra_body %}
+  <body class="d-flex flex-column align-items-start">
+    <div class="form-container d-flex justify-content-center align-items-center">
+      <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Cadastrar Aluno</button>
+      </form>
+    </div>
+  </body>
+{% endblock %}

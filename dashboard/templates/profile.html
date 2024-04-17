@@ -1,0 +1,66 @@
+{% extends "socialaccount/base_entrance.html" %}
+{% block extra_body %}
+<body class="d-flex flex-column align-items-start">
+
+    <main class="w-100 m-auto table-container">
+        <h1 class="h3 mb-3 fw-normal text-center">Your registered students</h1>
+        <div class="table-responsive">
+            <table class="table table-striped" style="max-width: 700px; padding: 1rem; margin: 0 auto;">
+                <thead>
+                    <tr>
+                        <th scope="col">Student</th>
+                        <th scope="col">School</th>
+                        <th scope="col">Distance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in students %}
+    <tr>
+        <td><a href="{% url 'edit_student' student.id %}">{{ student.name }}</a></td>
+        <td>{{ student.school.name }}</td>
+        <td>{{ student.distance }} km</td>
+        <td>
+            <button class="btn btn-danger delete-btn" data-student-id="{{ student.id }}" title="Excluir registo">
+                <i class="bi bi-X"></i>
+            </button>
+        </td>
+    </tr>
+    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="text-center mt-4">
+            <a href="{% url 'register_student' %}" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Cadastrar novos alunos">
+                <i class="bi bi-plus"></i>
+                Register new student
+            </a>
+        </div>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.delete-btn').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    if (confirm('Are you sure you want to delete this register?')) {
+                        var studentId = this.getAttribute('data-student-id');
+                        fetch(`/delete_student/${studentId}`, {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRFToken': '{{ csrf_token }}'
+                            },
+                            body: JSON.stringify({
+                                student_id: studentId
+                            })
+                        })
+                        .then(response => {
+                            if (response.ok) {
+                                location.reload();
+                            }
+                            // Você pode adicionar tratamento para exibir uma mensagem de erro se necessário
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+{% endblock extra_body %}

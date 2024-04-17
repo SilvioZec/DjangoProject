@@ -1,0 +1,20 @@
+html, body {
+    height: 100%;
+}
+
+.form-container {
+    max-width: 350px;
+    padding: 1rem;
+}
+
+.vertical-divider {
+    border-left: 1px solid #000;
+    height: 20px;
+    margin: 0 10px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.table-container{
+    max-width: 700px;
+    padding: 1rem;
+}
