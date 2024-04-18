@@ -20,8 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-h=b#r_a93p-&@3kr*!a%u@tmj2b11x$b+y^j5tpzoas+y1wup6'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -100,22 +99,7 @@ DATABASES = {
     }
 }
 
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'APP': {
-            'client_id': '724832716915-fp30g32i2hp6fu1ph6u53t8jq5g1ilco.apps.googleusercontent.com',
-            'secret': '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',
-            'key': ''
-        }
-    },
-    'github': {
-        'APP': {
-            'client_id': '62a3a2932a4a7bf74b25',
-            'secret': '19e7dec8200bf741fc6adcb781454b884f1fc8e1',
-            'key': ''
-        }
-    }
-}
+
 
 
 # Password validation
